@@ -1,0 +1,39 @@
+// Media Query, pass in breakpoint sizes, bottom up approach
+@mixin screenSize($size) {
+  // Check if size exists, else oput warning
+  @if map-has-key($breakpoints, $size) {
+    // write media query
+    @media (min-width: #{map-get($breakpoints, $size)}) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$size}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+// Header Font Size and Letter Spacing
+@mixin headerSize($size) {
+  // Check if size exists, else oput warning
+  @if map-has-key($headerSizes, $size) {
+    // write header size and spacing
+    font-family: $fieldwork;
+    font-size: #{map-get($headerSizes, $size)};
+    letter-spacing: $fieldworkLetterSpacing;
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$size}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+// Body Font Size
+@mixin bodySize($size) {
+  // Check if size exists, else oput warning
+  @if map-has-key($headerSizes, $size) {
+    // write header size and spacing
+    font-size: #{map-get($headerSizes, $size)};
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$size}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
